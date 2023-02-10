@@ -3,7 +3,7 @@ entries:
   cassandra:
   - apiVersion: v1
     appVersion: 3.11.5
-    created: "2023-02-09T17:10:35.748823478-08:00"
+    created: "2023-02-09T17:18:04.493011541-08:00"
     description: Apache Cassandra is a free and open-source distributed database management
       system designed to handle large amounts of data across many commodity servers,
       providing high availability with no single point of failure.
@@ -26,7 +26,7 @@ entries:
   elasticsearch:
   - apiVersion: v1
     appVersion: 7.17.3
-    created: "2023-02-09T17:10:35.750307137-08:00"
+    created: "2023-02-09T17:18:04.494591883-08:00"
     description: Official Elastic helm chart for Elasticsearch
     digest: 437a6bd248482b8eb663a1f63bee6c2f9d00c0d77abe90c5a86ca35631969608
     home: https://github.com/elastic/helm-charts
@@ -43,7 +43,7 @@ entries:
   grafana:
   - apiVersion: v1
     appVersion: 6.7.1
-    created: "2023-02-09T17:10:35.752450837-08:00"
+    created: "2023-02-09T17:18:04.495952486-08:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 5715ddf4d5a012a7bdb1f4ef0f4d4faebef022ad12f2c9d656fbe8a17a23d5c1
     home: https://grafana.net
@@ -65,7 +65,7 @@ entries:
   prometheus:
   - apiVersion: v2
     appVersion: 2.31.1
-    created: "2023-02-09T17:10:35.757427333-08:00"
+    created: "2023-02-09T17:18:04.500787616-08:00"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -97,4 +97,44 @@ entries:
     urls:
     - https://github.com/feynmanliang/temporal-helm-charts/charts/prometheus-15.1.3.tgz
     version: 15.1.3
-generated: "2023-02-09T17:10:35.747831139-08:00"
+  temporal:
+  - apiVersion: v2
+    appVersion: 1.19.1
+    created: "2023-02-09T17:18:04.492138684-08:00"
+    dependencies:
+    - condition: cassandra.enabled
+      name: cassandra
+      repository: https://charts.helm.sh/incubator
+      version: 0.14.3
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 15.1.3
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 5.0.10
+    description: Temporal is a distributed, scalable, durable, and highly available
+      orchestration engine to execute asynchronous long-running business logic in
+      a scalable and resilient way.
+    digest: fb9a2a61d0d80fc996ab3cc8270134d219a5cdedd165e728ee9568d9848dc2a6
+    home: https://temporal.io/
+    keywords:
+    - temporal
+    - workflow
+    - orchestration
+    maintainers:
+    - name: Temporal Technologies Inc.
+      url: https://temporal.io/
+    name: temporal
+    sources:
+    - https://github.com/temporalio/temporal
+    type: application
+    urls:
+    - https://github.com/feynmanliang/temporal-helm-charts/temporal-0.19.1.tgz
+    version: 0.19.1
+generated: "2023-02-09T17:18:04.48096925-08:00"
